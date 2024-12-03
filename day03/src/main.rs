@@ -16,14 +16,16 @@ fn main() {
             if chars[idx].is_numeric() {
                 first_num.push(chars[idx]);
             }
-            if first_num.len() > 3 {
-                first_num = String::from("");
-                parsing_first_num = false;
-            }
+
             if chars[idx] == ',' {
                 parsing_first_num = false;
                 parsing_second_num = true;
                 idx += 1;
+            }
+
+            if first_num.len() > 3 {
+                first_num = String::from("");
+                parsing_first_num = false;
             }
         }
 
