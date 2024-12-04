@@ -23,7 +23,7 @@ fn main() {
                 idx += 1;
             }
 
-            if first_num.len() > 3 {
+            if first_num.len() > 3 || (!chars[idx].is_numeric() && chars[idx] != ',') {
                 first_num = String::from("");
                 parsing_first_num = false;
             }
