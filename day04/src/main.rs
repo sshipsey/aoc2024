@@ -36,7 +36,38 @@ fn part1(matrix: &Vec<Vec<char>>) -> i32 {
 
 fn part2(matrix: &Vec<Vec<char>>) -> i32 {
     let mut sum = 0;
+    for y in 0..matrix.len() {
+        for x in 0..matrix[0].len() {
+            if get_up_left_mas(&matrix, x, y) && get_down_left_mas(&matrix, x, y) {
+                sum += 1;
+            }
+        }
+    }
     sum
+}
+
+fn get_up_left_mas(matrix: &Vec<Vec<char>>, x: usize, y: usize) -> bool {
+    if x == 0 || y == 0 || x == matrix[0].len() - 1 || y == matrix.len() - 1 {
+        return false;
+    }
+
+    check_mas(vec![
+        matrix[y - 1][x - 1],
+        matrix[y][x],
+        matrix[y + 1][x + 1],
+    ])
+}
+
+fn get_down_left_mas(matrix: &Vec<Vec<char>>, x: usize, y: usize) -> bool {
+    if x == 0 || y == 0 || x == matrix[0].len() - 1 || y == matrix.len() - 1 {
+        return false;
+    }
+
+    check_mas(vec![
+        matrix[y - 1][x + 1],
+        matrix[y][x],
+        matrix[y + 1][x - 1],
+    ])
 }
 
 fn get_left(matrix: &Vec<Vec<char>>, x: usize, y: usize) -> bool {
@@ -137,4 +168,9 @@ fn get_left_down(matrix: &Vec<Vec<char>>, x: usize, y: usize) -> bool {
 
 fn check_xmas(chars: Vec<char>) -> bool {
     chars.into_iter().collect::<String>() == "XMAS"
+}
+
+fn check_mas(chars: Vec<char>) -> bool {
+    let str = chars.into_iter().collect::<String>();
+    str == "MAS" || str == "SAM"
 }
