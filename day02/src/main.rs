@@ -12,15 +12,15 @@ fn main() {
         })
         .collect();
 
-    println!("{}", part1(rows.clone()));
-    println!("{}", part2(rows.clone()));
+    println!("{}", part1(&rows));
+    println!("{}", part2(&rows));
 }
 
-fn part1(rows: Vec<Vec<i32>>) -> i32 {
+fn part1(rows: &Vec<Vec<i32>>) -> i32 {
     rows.iter().map(|row| get_safety(row)).sum::<i32>()
 }
 
-fn part2(rows: Vec<Vec<i32>>) -> i32 {
+fn part2(rows: &Vec<Vec<i32>>) -> i32 {
     rows.iter()
         .map(|row| {
             get_level_variations(row)
